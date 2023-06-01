@@ -28,6 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+AUTH_USER_MODEL = 'account.CustomUser'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'meeting.apps.MeetingConfig',
-    'rest_framework'
+    'account.apps.AccountConfig',
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -88,9 +92,6 @@ DATABASES = {
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },

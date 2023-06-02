@@ -10,10 +10,13 @@ class UserSerializer(serializers.ModelSerializer):
     )
 
     def create(self, validated_data):
+
+        username = validated_data['email'].split('@')[0]
+
         user = UserModel.objects.create_user(
             email=validated_data['email'],
             password=validated_data['password'],
-            username=validated_data['email']
+            username=username
 
         )
         return user
@@ -24,10 +27,12 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserDetailSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(read_only=True)
+
 
     class Meta:
         model = get_user_model()
-        exclude = ['password']
+        fields = ['username', 'first_name', 'company', 'bio', 'email']
 
 
 

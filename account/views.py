@@ -1,8 +1,7 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.backends import UserModel
-from django.shortcuts import render
 from rest_framework import generics
 
+from account.permissions import IsOwnerOrReadOnly
 from account.serializers import UserSerializer, UserDetailSerializer
 
 
@@ -13,7 +12,8 @@ class UserView(generics.CreateAPIView):
     serializer_class = UserSerializer
 
 
-class UserDetailView(generics.RetrieveAPIView):
+class UserDetailView(generics.RetrieveUpdateAPIView):
     queryset = get_user_model()
     serializer_class = UserDetailSerializer
-
+    lookup_field = 'username'
+    permission_classes = [IsOwnerOrReadOnly]

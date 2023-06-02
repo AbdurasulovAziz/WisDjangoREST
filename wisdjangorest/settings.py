@@ -39,10 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'meeting.apps.MeetingConfig',
-    'account.apps.AccountConfig',
     'rest_framework',
     'rest_framework.authtoken',
+    'meeting.apps.MeetingConfig',
+    'account.apps.AccountConfig',
 ]
 
 MIDDLEWARE = [
